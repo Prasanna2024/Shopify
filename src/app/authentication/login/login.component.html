@@ -1,0 +1,26 @@
+<div class="login-container">
+    <div class="example-form">
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Ex. abc@gmail.com" formControlName="email" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Ex. Pizza" formControlName="password" type="password">
+            </mat-form-field>
+            <div class="buttons-container">
+                <button mat-raised-button color="primary" type="submit">Login</button>
+                <button mat-raised-button color="warn">Signup</button>
+            </div>
+        </form>
+        <div class="icons-container">
+            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                <img src="../../../assets/googleicon.png">
+            </button>
+            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                <img src="../../../assets/githubicon.png">
+            </button>
+        </div>
+    </div>
+</div>

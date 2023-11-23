@@ -1,0 +1,15 @@
+<div class="mat-toolbar">
+  <div class="topbar-logo">
+    Shopify
+  </div>
+  <div class="topbar-components">
+    <form class="search">
+      <mat-icon>search</mat-icon>
+      <input type="search" name="serach" placeholder="search products,brands and more" [(ngModel)]="serachText">
+    </form>
+    <mat-icon routerLink="/home" routerLinkActive="active-icon">home</mat-icon>
+    <mat-icon>person</mat-icon>
+    <mat-icon routerLink="/faviorate" routerLinkActive="active-icon">favorite</mat-icon>
+    <mat-icon routerLink="/cart" routerLinkActive="active-icon" matBadge="{{cartSize.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
+  </div>
+</div>

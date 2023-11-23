@@ -1,0 +1,33 @@
+<div class="faviorate-container">
+    <div class="faviorate-list">
+        <div class="card" *ngFor="let data of FaviorateData;index as i">
+            <img src="{{data.thumbnail}}" class="fav-image">
+            <div class="fav-desc">
+                {{data.description}}
+                <div class="faviorate-buttons">
+                    <button mat-raised-button color="primary" (click)="gotoCart(data.id,data.ordercount)">Add cart</button>
+                    <button mat-raised-button color="warn" (click)="deleteFaviorate(data.id)">Delete</button>
+                </div>
+                <div class="add-count">
+                    <mat-icon class="add" (click)="data.ordercount = data.ordercount  + 1"  (click)="getTotalPrice()" [ngClass]="{'disabled': data.ordercount >= data.stock}">add_circle</mat-icon>
+                    <input type="number" [(ngModel)]="data.ordercount" class="-countnumber" min="0"
+                        max="{{data.stock}}">
+                    <mat-icon class="remove" (click)="data.ordercount = data.ordercount - 1" (click)="getTotalPrice()" [ngClass]="{'disabled': data.ordercount <=  0}">remove_circle</mat-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="faviorate-price">
+        <div class="price-container">
+            <div class="price-header">
+                <p>Totoal header</p>
+            </div>
+            <div class="price-details">
+                <p>Total no of Items: {{FaviorateData.length}}</p>
+                <h2>Total Price: ₹ {{totalPrice | number: '1.2-2'}}</h2>
+            </div>
+        </div>
+    </div>
+
+
+</div>

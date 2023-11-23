@@ -1,0 +1,58 @@
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    height: 10vh;
+    background-color: whitesmoke;
+    padding: 15px;
+    flex-direction: row;
+  
+    .topbar-logo {
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-style: italic;
+      color: gray;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      border-radius: 10px;
+      justify-content: center;
+    }
+  
+    .topbar-components {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  
+      .search {
+        width: 400px;
+        padding: 5px;
+        border-radius: 10px;
+        border: none !important;
+        display: flex;
+        background-color: white;
+  
+        input[type=search] {
+          border: none;
+          width: 100%;
+          padding-block: 0px;
+          outline: none;
+        }
+      }
+    }
+  
+    mat-icon {
+      cursor: pointer;
+      border-bottom: 0px;
+      &:hover {
+        text-underline-position: below;
+        border-bottom: 5px solid rgb(149, 209, 149);
+        transition: 5ms ease-in-out;
+      }
+    }
+  
+    // Add styles for the active state of the mat-icon
+    .active-icon {
+      border-bottom: 5px solid rgb(0, 0, 0);
+    }
+  }
+  

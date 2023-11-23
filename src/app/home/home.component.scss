@@ -1,0 +1,127 @@
+.cards-container {
+    height: 100vh;
+    width: 80vw;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: auto;
+    justify-content: center;
+}
+.cards-container:hover .card-image{
+    :hover 
+    {
+        transform: scale(1.02);
+    }
+}
+.card {
+    height: 350px;
+    width: 250px;
+    display: flex;
+    box-shadow: 0px 2px 8px -1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 2px 8px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 2px 8px -1px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    :hover 
+    {
+        // transform: scale(1.05);
+    }
+}
+
+
+
+.card-image {
+    height: 200px;
+    width: 200px;
+    margin-top: 5px;
+    img
+    {
+       display: flex;
+       margin-left: 25px;
+    }
+
+}
+
+.card-desciption p {
+    height: 50px;
+    overflow: hidden;
+}
+
+.card-desciption {
+    font-size: 12px;
+    overflow: hidden;
+    background-color: #F7F7F8;
+    padding: 10px;
+
+    .product-price {
+        font-weight: bolder;
+        display: flex;
+        justify-content: space-between;
+
+        .rating-card {
+            color: white;
+            background-color: green;
+            width: max-content;
+            text-decoration: center;
+            display: flex;
+            justify-content: space-between;
+            gap: 2px;
+            margin: 2px;
+            padding: 2px;
+
+            .star {
+                zoom: 75%;
+            }
+        }
+    }
+
+}
+.card-whole
+{
+    display: flex;
+    justify-content: space-between;
+    gap:20px;
+    width: fit-content;
+    margin-bottom: 0px;
+    transform: none !important;
+
+}
+.love {
+    position: absolute;
+    float: right;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: grey;
+    border:  black 1 px;
+}
+
+::ng-deep .love:hover {
+    color: red;
+    transform: scale(1.05);
+}
+
+.activate {
+    color: red;
+}
+
+.card-whole
+{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.outofstockcard{
+    color: red;
+    font-weight: bolder;
+}
+
+.inStock
+{
+    visibility: hidden;
+}

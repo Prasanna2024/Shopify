@@ -1,0 +1,26 @@
+<div class="home-container">
+    <app-filter (toppingsChange)="handleToppingsChange($event)"></app-filter>
+    <div class="cards-container">
+        <div class="card" *ngFor="let data of ProductsData;index as i">
+            <mat-icon class="love" (click)="faviorateSubmit(i)"
+                [ngClass]="data.faviorate?'activate':'love'">favorite</mat-icon>
+            <div class="card-whole" (click)="routerToProduct(data.id)">
+                <div class="card-image">
+                    <img src={{data.thumbnail}} class="card-image">
+                </div>
+                <div class="card-desciption">
+                    <p>{{data.title}}</p>
+                    <div class="product-price">
+                        ₹{{data.price}}
+                        <div class="rating-card">
+                            <mat-icon class="star">star</mat-icon>
+                            {{data.rating}}
+                        </div>
+                    </div>
+                    <p [ngClass]="data.stock===0?'outofstockcard':'inStock'">Currently out of stock</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

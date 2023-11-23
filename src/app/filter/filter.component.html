@@ -1,0 +1,8 @@
+<div class="filtercomp">
+  Filterby:
+  <div class="options" *ngFor="let d of filterCategory">
+    <input type="radio" [value]="d" (click)="changefilternew(d)" name="filterOption">
+    <label>{{d}}</label>
+  </div>
+</div>
+

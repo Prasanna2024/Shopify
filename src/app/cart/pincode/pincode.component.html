@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <p>Enter your pincode</p>
+  <mat-form-field>
+    <mat-label>Enter your pincode</mat-label>
+    <input matInput [(ngModel)]="data.pincode">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.pincode" cdkFocusInitial>Ok</button>
+</div>
