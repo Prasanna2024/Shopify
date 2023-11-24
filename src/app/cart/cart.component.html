@@ -5,6 +5,14 @@
                 <p>The added products deliver to: {{ pincode }}</p>
                 <button (click)="openDialog()">Enter Delivery pincode</button>
             </div>
+            <div *ngIf="cartData.length === 0" class="empty-image">
+                <p>Your cart is Empty</p>
+                <img src="../../assets/empty-cart.png" height="300px" width="300px"
+                    style="display: flex; justify-content: center;align-items: center;">
+            </div>
+
+
+
             <div class="card">
                 <ng-container *ngFor="let data of cartData">
                     <div class="card-items">
@@ -20,11 +28,13 @@
                         </div>
                         <div class="add-count">
                             <mat-icon class="add" (click)="data.ordercount = data.ordercount + 1"
-                                  [ngClass]="{'disabled': data.ordercount >= data.stock}" >add_circle</mat-icon>
-                            <input type="number" [(ngModel)]="data.ordercount" class="-countnumber" min="0"
+                                [ngClass]="{'disabled': data.ordercount >= data.stock}"
+                                (click)="getTotal()">add_circle</mat-icon>
+                            <input type="number" [(ngModel)]="data.ordercount" class="-countnumber" min="1"
                                 max="{{data.stock}}">
                             <mat-icon class="remove" (click)="data.ordercount = data.ordercount - 1"
-                                 [ngClass]="{'disabled': data.ordercount <=  0}">remove_circle</mat-icon>
+                                (click)="getTotal()"
+                                [ngClass]="{'disabled': data.ordercount <=  1}">remove_circle</mat-icon>
                         </div>
                     </div>
                 </ng-container>

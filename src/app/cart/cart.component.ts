@@ -18,23 +18,33 @@ export class CartComponent {
   cartData: any = [];
   totalPrice: number = 0;
   constructor(public dialog: MatDialog, private _services: StoreService) {
-    this._services._cartData$.subscribe({
-      next: (data) => {
-        this.cartData = data.filter((data)=>data['ordercount']>=1);
-        // this.cartData = data
-        data.filter((dt) => this.totalPrice = (this.totalPrice + dt['price']) * dt['ordercount'])
-      }
-    });
+    const storedCart = sessionStorage.getItem('cartData');
+    const storedProducts = sessionStorage.getItem('products');
+    if (storedProducts) {
+      this.cartData = (JSON.parse(storedCart));
+      this.productData = (JSON.parse(storedProducts));
+      this.getTotal();
 
-    this._services._ProductData$.subscribe({
-      next: (data) => {
-        this.productData = data;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+    }
+    else {
+      this._services._cartData$.subscribe({
+        next: (data) => {
+          this.cartData = data;
+          this.getTotal();
+        }
+      });
+      this.getTotal();
+      this._services._ProductData$.subscribe({
+        next: (data) => {
+          this.productData = data;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
   }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(PincodeComponent, {
       data: { pincode: this.pincode },
@@ -45,44 +55,61 @@ export class CartComponent {
       this.pincode = result;
     });
   }
+
   deleteFaviorate(productId: number) {
     this.cartData = this._services.deleteCart(productId);
     this.getTotal();
   }
+
   saveforLater(productId: number) {
+    const orderchange = this.cartData.find(obj=>obj['id']==productId).ordercount
     const updatedProducts = this.productData.map((product) =>
-      product.id === productId ? { ...product, faviorate: true } : product
+      product.id === productId ? { ...product, faviorate: true,ordercount:orderchange } : product
     );
+    console.log("------------------<cartData>-----------");
+    console.log(updatedProducts);
+    console.log("------------------<cartData>-----------");
     const updateCart = this.cartData.filter((data) => data['id'] != productId);
     this.cartData = updateCart;
+    sessionStorage.setItem('cartData',this.cartData);
     this._services.updateCart(productId);
+    this._services.changeCarts(this.cartData);
     this._services.updateProduct(updatedProducts);
-    this._services.updateCartData(this.cartData);
-    // console.log(this.cartData);
+    this.getTotal();
   }
 
   payTotalCart() {
-    console.log(this.productData);
-    console.log(this.cartData);
+    const check = this.cartData.filter((data)=>data['ordercount']>data['stock'] || data['ordercount']<=0)
+    if(check.length==0)
+    {
     this.cartData = this.cartData.map((data) => {
       return {
         ...data,          // Spread the existing properties of data
         stock: data.stock - data['ordercount'],     // Reset ordercount to 0
         orderdone: data.orderdone + data['ordercount'],
-        faviorate:false,
-        ordercount: 0 ,
+        faviorate: false,
+        ordercount: 0,
       };
     });
+
     const filteredProductData = this.productData.filter(data => !this.cartData.map(cartItem => cartItem.id).includes(data.id));
     console.log(filteredProductData);
     this._services.updateProduct([...this.cartData, ...filteredProductData])
-    this._services.updateCartData(this.cartData);
-    this._services.clearCartSize();
+    const emp: any = []
+    sessionStorage.setItem('cartData', emp);
+    this.cartData = [];
+    this._services.updateCartData();
+    this.getTotal();
+  }
+  else 
+  {
+    confirm("You have choosen a order greater than  or you cannot pay for zero stock!")
+  }
 
   }
   getTotal() {
     this.totalPrice = 0;
-    this.cartData.filter((data)=>this.totalPrice += data['price']*data['ordercount'])
+    this.cartData.filter((data) => this.totalPrice += data['price'] * data['ordercount'])
   }
 }
 

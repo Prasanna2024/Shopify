@@ -1,18 +1,19 @@
 .cards-container {
     height: 100vh;
     width: 80vw;
-    gap: 10px;
+    gap: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin: auto;
     justify-content: center;
 }
-.cards-container:hover .card-image{
-    :hover 
-    {
+
+.cards-container:hover .card-image {
+    :hover {
         transform: scale(1.02);
     }
 }
+
 .card {
     height: 350px;
     width: 250px;
@@ -23,9 +24,11 @@
     cursor: pointer;
     justify-content: space-between;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    :hover 
-    {
+
+    :hover {
         // transform: scale(1.05);
     }
 }
@@ -35,11 +38,11 @@
 .card-image {
     height: 200px;
     width: 200px;
-    margin-top: 5px;
-    img
-    {
-       display: flex;
-       margin-left: 25px;
+    margin-top: 10px;
+
+    img {
+        margin-top: 5px;
+        display: flex;
     }
 
 }
@@ -47,19 +50,26 @@
 .card-desciption p {
     height: 50px;
     overflow: hidden;
+    margin-left: 5px;
 }
 
 .card-desciption {
     font-size: 12px;
-    overflow: hidden;
-    background-color: #F7F7F8;
-    padding: 10px;
+    width: 100%;
+    background-color: whitesmoke;
+    max-height: 125px;
 
     .product-price {
         font-weight: bolder;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-
+        margin: 5px;
+         .pin 
+         {
+            display: flex;
+            justify-content: space-between;
+         }
         .rating-card {
             color: white;
             background-color: green;
@@ -78,16 +88,16 @@
     }
 
 }
-.card-whole
-{
+
+.card-whole {
     display: flex;
+    width: 100%;
     justify-content: space-between;
-    gap:20px;
-    width: fit-content;
     margin-bottom: 0px;
     transform: none !important;
-
+    align-items: center;
 }
+
 .love {
     position: absolute;
     float: right;
@@ -95,8 +105,19 @@
     right: 5px;
     cursor: pointer;
     color: grey;
-    border:  black 1 px;
+    border: black 1 px;
 }
+
+
+
+.card-whole {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 
 ::ng-deep .love:hover {
     color: red;
@@ -107,21 +128,11 @@
     color: red;
 }
 
-.card-whole
-{
-    margin-top: 10px;
-    margin-bottom: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.outofstockcard{
+.outofstockcard {
     color: red;
     font-weight: bolder;
 }
 
-.inStock
-{
+.inStock {
     visibility: hidden;
 }

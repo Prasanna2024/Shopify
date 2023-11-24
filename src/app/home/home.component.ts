@@ -31,11 +31,18 @@ export class HomeComponent implements OnInit {
     // console.log(this.ProductsData);
   }
   faviorateSubmit(indx: number) {
-    const yes = confirm("do you want to add it in favoriteS!!!")
-    
+    var yes;
+    if(this.ProductsData[indx]['faviorate']==false){
+    yes = confirm(`do you want to add  i${this.ProductsData[indx]['title']}n favorite list!!!`)
+    }
+    else 
+    {
+      yes = confirm(`do you want to remove ${this.ProductsData[indx]['title']} from fav list`)
+    }
     if(yes)
     {
       this.ProductsData[indx]['faviorate'] = !this.ProductsData[indx]['faviorate'];
+      this._service.updateProduct(this.ProductsData)
     }
     // console.log(this.ProductsData[indx]['faviorate']);
     // this._service.updateProduct(this.ProductsData);

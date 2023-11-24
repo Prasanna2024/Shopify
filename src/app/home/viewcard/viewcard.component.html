@@ -1,32 +1,53 @@
 <div class="view-container">
-    <div class="view-whole">
-        <div class="view-imga">
-            <h2>{{CurrentProduct.title}}</h2>
-            <img src="{{CurrentProduct.thumbnail}}" height="400px" width="400px">
-            <div class="viewcart-buttons">
-                <button class="cart-buttons adc" (click)="addCart()">
-                    <mat-icon>shopping_cart</mat-icon>
-                    <p>ADD TO CART</p>
-                </button>
-                <button class="cart-buttons bn">
-                    <mat-icon>flash_on</mat-icon>
-                    <p>BUY NOW </p>
-                </button>
-            </div>
+  <div class="view-whole">
+    <div class="view-imga">
+      <h2>{{ CurrentProduct.title }}</h2>
+
+      <div class="slider-container">
+        <mat-icon class="love" (click)="faviorateSubmit()"
+          [ngClass]="CurrentProduct.faviorate?'activate':'love'">favorite</mat-icon>
+        <div *ngFor="let image of CurrentProduct.images; let i = index" [hidden]="currentSlide !== i" class="mySlides">
+          <img src="{{ image }}" height="400px" width="400px" >
         </div>
-        <div class="view-purchase">
-            <div class="view-cart-title">{{CurrentProduct.title}}</div>
-            <div class="view-cart-description">{{CurrentProduct.description}}</div>
-            <div class="product-price">
-                <div class="view-cart-price">₹{{CurrentProduct.price}}</div>
-                <div class="rating-card">
-                    <mat-icon class="star">star</mat-icon>
-                    {{CurrentProduct.rating}}
-                </div>
-                <div class="availabe-stocks">
-                    Availble Stocks : <span>{{CurrentProduct.stock}}</span>
-                </div>
-            </div>
+        <div class="slides">
+          <mat-icon (click)="prevSlide()" class="btn">arrow_back_ios</mat-icon>
+          <div *ngFor="let image of CurrentProduct.images;index as i">
+            <input type="radio" name="image.title" (click)="changeSlide(i)" [checked]='currentSlide==i' >
+          </div>
+          <mat-icon (click)="nextSlide()" class="btn">arrow_forward_ios</mat-icon>
         </div>
+      </div>
+
+      <div class="viewcart-buttons">
+        <button class="cart-buttons adc" (click)="addCart()">
+          <mat-icon>shopping_cart</mat-icon>
+          <div *ngIf="CurrentProduct.ordercount<=0">
+            <p>ADD TO CART</p>
+          </div>
+          <div *ngIf="CurrentProduct.ordercount>0">
+            <p><a style="text-decoration: none;color: white;" routerLink="/cart">GO TO CART</a></p>
+          </div>
+        </button>
+        <button class="cart-buttons bn">
+          <mat-icon>flash_on</mat-icon>
+          <p>BUY NOW </p>
+        </button>
+      </div>
     </div>
+
+    <div class="view-purchase">
+      <div class="view-cart-title">{{ CurrentProduct.title }}</div>
+      <div class="view-cart-description">{{ CurrentProduct.description }}</div>
+      <div class="product-price">
+        <div class="view-cart-price">₹{{ CurrentProduct.price }}</div>
+        <div class="rating-card">
+          <mat-icon class="star">star</mat-icon>
+          {{ CurrentProduct.rating }}
+        </div>
+        <div class="availabe-stocks">
+          Available Stocks: <span>{{ CurrentProduct.stock }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

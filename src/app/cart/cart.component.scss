@@ -12,18 +12,18 @@
 
         .cart-list {
             flex: 0.7;
-            // background-color: green;
             display: flex;
             flex-direction: column;
-
+            overflow-y: scroll;
             .cart-pincode {
                 height: fit-content;
                 display: flex;
-                background-color: rgb(238, 232, 232);
+                max-width: 100%;
+                background-color: whitesmoke;
                 margin: 10px;
                 border-radius: 10px;
                 box-sizing: border-box;
-                padding: 10px;
+                padding: 15px;
                 align-items: center;
                 justify-content: space-between;
 
@@ -38,13 +38,13 @@
 
         .cart-pricedetails {
             flex: 0.25;
-            background-color: rgb(238, 232, 232);
+            background-color:#23a4a6;
             display: flex;
             border-radius: 10px;
             flex-direction: column;
-
-            .pay-button
-            {
+            height: 50%;
+            text-align: center;
+            .pay-button {
                 display: flex;
                 margin: auto;
             }
@@ -56,18 +56,26 @@
 .card {
     // background-color: black !important;
     display: flex;
-    width: 100%;
+    flex: 0.6;
     height: 100%;
     flex-direction: column;
-
+    gap: 10px;
+    align-items: center;
+    background-color: whitesmoke;
     .card-items {
         height: fit-content;
-        width: 100%;
-        // margin: 10px;
-        background-color: #e4e4ea;
-        padding: 10px;
+        width: 90%;
+        margin: 10px;
+        display: flex;
+        background-color:white;
         position: relative;
         display: flex;
+
+        &:hover {
+            -webkit-box-shadow: 2px 5px 13px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 2px 5px 13px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 2px 5px 13px 0px rgba(0, 0, 0, 0.75);
+        }
     }
 }
 
@@ -99,31 +107,49 @@
     }
 }
 
-.add-count
-{
+.add-count {
     display: flex;
     align-items: center;
     position: absolute;
     bottom: 0px;
     left: 15%;
     box-shadow: none !important;
-    mat-icon 
-    {
+
+    mat-icon {
         box-shadow: none !important;
         border-radius: 50px;
     }
-    .add 
-    {
+
+    .add {
         color: rgb(14, 194, 14);
     }
-    .remove
-    {
+
+    .remove {
         color: rgb(250, 56, 56);
     }
 
 }
 
 .disabled {
-    pointer-events: none;  /* Disable pointer events when the class is present */
-    opacity: 0.5;          /* Optionally reduce opacity for a visual indication */
-  }
+    pointer-events: none;
+    /* Disable pointer events when the class is present */
+    opacity: 0.5;
+    /* Optionally reduce opacity for a visual indication */
+}
+
+.empty-image
+{
+    background-color: black !important;
+    text-align: center;
+    color: white;
+    font-size: larger;
+    border-radius: 20px 0px 20px 0px;
+    height: 400px;
+    img 
+    {
+        width: 300px;
+        height: 300px;
+        display: flex;
+        margin: auto;
+    }
+}

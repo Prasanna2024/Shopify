@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../services/store.service';
-import { filter } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,17 +12,27 @@ export class FaviorateComponent implements OnInit {
   FaviorateData: any = [];
   totalPrice: number = 0;
   constructor(private _service: StoreService, private router: Router) {
-    this._service._ProductData$.subscribe({
-      next: (dta) => {
-        this.ProductData = dta;
-        this.FaviorateData = dta.filter((data) => data['faviorate'] == true);
-        // console.log(this.FaviorateData);
-      }
-    })
-    this.getTotalPrice()
+    const productfromSession = JSON.parse(sessionStorage.getItem('products'))
+    if (productfromSession) {
+      this.ProductData = productfromSession
+      this.updateFaviorate();
+      this.getTotalPrice();
+    }
+    else {
+      this._service._ProductData$.subscribe({
+        next: (dta) => {
+          this.ProductData = dta.map((data) => data['ordercount'] > 0 && data['faviorate'] == true);
+        }
+      })
+      this.updateFaviorate()
+      this.getTotalPrice()
+    }
   }
   ngOnInit() {
 
+  }
+  updateFaviorate() {
+    this.FaviorateData = this.ProductData.filter((data) => data['faviorate'] == true);
   }
   deleteFaviorate(productId: number) {
     this.FaviorateData = this.FaviorateData.map((product) =>
@@ -35,16 +44,15 @@ export class FaviorateComponent implements OnInit {
     this.getTotalPrice();
     if (this.FaviorateData.length === 0) this.totalPrice = 0;
     this._service.updateProduct(this.ProductData);
+    this.updateFaviorate();
+
   }
   getTotalPrice() {
     this.totalPrice = 0;
     this.FaviorateData.filter((dta) => {
       this.totalPrice += dta['price'] * dta['ordercount'];
-      // console.log(dta['ordercount']);
-    }
+    })
 
-    )
-    // console.log(this.totalPrice);
   }
   addCount(id: number) {
     this.FaviorateData = this.FaviorateData.map((product) =>
@@ -62,10 +70,9 @@ export class FaviorateComponent implements OnInit {
       this.ProductData.map((data) => {
         if (data['id'] === id) { data['faviorate'] = false }
       })
-      // console.log(this.ProductData);
       this._service.updateProduct(this.ProductData);
+      this.updateFaviorate();
       this.getTotalPrice();
-      this._service.updateProduct(this.ProductData);
     }
     else alert("Cart should be atleast with one quantity");
   }

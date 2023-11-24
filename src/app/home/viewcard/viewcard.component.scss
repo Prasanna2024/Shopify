@@ -1,23 +1,22 @@
-.view-container
-{
+.view-container {
     height: max-content;
     width: 100%;
     background-color: rgb(238, 232, 232);
     margin: 10px;
-    .view-whole
-    {
+
+    .view-whole {
         display: flex;
         height: 100%;
         width: 100%;
     }
-    .view-imga
-    {
+
+    .view-imga {
         flex: 0.4;
         margin: 10px;
         text-align: center;
     }
-    .view-purchase
-    {
+
+    .view-purchase {
         flex: 0.6;
         background-color: white;
         margin: 10px;
@@ -26,29 +25,30 @@
     }
 }
 
-.viewcart-buttons
-{
+.viewcart-buttons {
     display: flex;
     align-items: center;
     justify-content: space-between;
     text-align: center;
     padding: 20px;
-    .cart-buttons{
+
+    .cart-buttons {
         width: 150px;
     }
 }
-.adc
-{
+
+.adc {
     background-color: #FF9F00;
     border-radius: 5px;
     cursor: pointer;
 }
-.bn 
-{
+
+.bn {
     background-color: #FB641B;
     border-radius: 5px;
 }
-button{
+
+button {
     border: none;
     cursor: pointer;
 }
@@ -57,26 +57,33 @@ button{
 .view-cart-title {
     font-size: 20px;
     font-weight: bold;
-    color: #333; /* Set your desired text color */
-    margin-bottom: 10px; /* Adjust as needed */
-  }
-  
-  /* Styling for view-cart-price */
-  .view-cart-price {
+    color: #333;
+    /* Set your desired text color */
+    margin-bottom: 10px;
+    /* Adjust as needed */
+}
+
+/* Styling for view-cart-price */
+.view-cart-price {
     font-size: 25px;
-    color: #008000; /* Set your desired text color for price */
-    margin-bottom: 8px; /* Adjust as needed */
-  }
-  
-  /* Styling for view-cart-description */
-  .view-cart-description {
+    color: #008000;
+    /* Set your desired text color for price */
+    margin-bottom: 8px;
+    /* Adjust as needed */
+}
+
+/* Styling for view-cart-description */
+.view-cart-description {
     font-size: 16px;
-    color: #555; /* Set your desired text color for description */
-    margin-bottom: 12px; /* Adjust as needed */
-  }
-  
-  .product-price {
+    color: #555;
+    /* Set your desired text color for description */
+    margin-bottom: 12px;
+    /* Adjust as needed */
+}
+
+.product-price {
     font-weight: bolder;
+
     .rating-card {
         color: white;
         background-color: green;
@@ -94,16 +101,69 @@ button{
     }
 }
 
-.availabe-stocks
+.slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.ot 
 {
+    outline: solid black 1px;
+}
+.availabe-stocks {
     font-size: large;
-    span{
+
+    span {
         color: red;
     }
 }
 
-img 
-{
+img {
     display: flex;
     margin: auto;
+
+    &:hover {
+        cursor: zoom-in;
+    }
+}
+
+
+.slides {
+    display: flex;
+    width: 50%;
+    height: max-content;
+    justify-content: space-between;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.love {
+    cursor: pointer;
+    color: grey;
+    border: black 1 px;
+}
+
+
+.love:hover {
+    color: red;
+    transform: scale(1.05);
+}
+
+.activate {
+    color: red;
+}
+
+.outofstockcard {
+    color: red;
+    font-weight: bolder;
+}
+
+.inStock {
+    visibility: hidden;
 }

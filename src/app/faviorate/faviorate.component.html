@@ -1,5 +1,9 @@
 <div class="faviorate-container">
     <div class="faviorate-list">
+        <div *ngIf="FaviorateData.length === 0" class="empty-image">
+            <p>Your faviorate-list is Empty</p>
+            <img src="../../assets/school-bag.gif" height="300px" width="300px" style="display: flex; justify-content: center;align-items: center;">
+        </div>
         <div class="card" *ngFor="let data of FaviorateData;index as i">
             <img src="{{data.thumbnail}}" class="fav-image">
             <div class="fav-desc">
@@ -20,7 +24,7 @@
     <div class="faviorate-price">
         <div class="price-container">
             <div class="price-header">
-                <p>Totoal header</p>
+                <p>Totoal Price</p>
             </div>
             <div class="price-details">
                 <p>Total no of Items: {{FaviorateData.length}}</p>
